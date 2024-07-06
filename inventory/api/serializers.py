@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from inventory.models import Items
+from inventory.models import Items, Sales
 
 class ItemsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,3 +12,8 @@ class ItemsSerializer(serializers.ModelSerializer):
 
     def to_internal_value(self, data):
         return data
+
+class SalesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sales
+        fields = '__all__'

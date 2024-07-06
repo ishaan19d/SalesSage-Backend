@@ -35,6 +35,10 @@ class CompanyUserView(APIView):
         
         if serializer.is_valid():
             user = serializer.save()
+            sales_collection_name = f"{user.username}_sales"
+            item_collection_name = f"{user.username}_items"
+            db.create_collection(item_collection_name)
+            db.create_collection(sales_collection_name)
             return Response(CompanyUserSerializer(user).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
